@@ -154,7 +154,7 @@ cat <<EOF > 2-provisionar-k8s-master-auto-shell.yml
       shell: $K8S_JOIN_MASTER
 
     - name: "Colocando no path da maquina o conf do kubernetes"
-      shell: mkdir -p $HOME/.kube && sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config && sudo chown $(id -u):$(id -g) $HOME/.kube/config && export KUBECONFIG=/etc/kubernetes/admin.conf
+      shell: mkdir -p ~/.kube && sudo cp -f /etc/kubernetes/admin.conf ~/.kube/config && sudo chown $(id -u):$(id -g) ~/.kube/config && export KUBECONFIG=/etc/kubernetes/admin.conf
 #---
 - hosts:
   - ec2-k8s-m3
