@@ -145,10 +145,22 @@ echo $K8S_JOIN_WORKER
 cat <<EOF > 2-provisionar-k8s-master-auto-shell.yml
 - hosts:
   - ec2-k8s-m2
+  become: yes
+  tasks:
+    - name: "Reset cluster 2"
+      shell: "kubeadm reset -f"
+
+    - name: "Fazendo join kubernetes master"
+      shell: $K8S_JOIN_MASTER
+
+    - name: "Colocando no path da maquina o conf do kubernetes"
+      shell: mkdir -p $HOME/.kube && sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config && sudo chown $(id -u):$(id -g) $HOME/.kube/config && export KUBECONFIG=/etc/kubernetes/admin.conf
+#---
+- hosts:
   - ec2-k8s-m3
   become: yes
   tasks:
-    - name: "Reset cluster"
+    - name: "Reset cluster 3"
       shell: "kubeadm reset -f"
 
     - name: "Fazendo join kubernetes master"
