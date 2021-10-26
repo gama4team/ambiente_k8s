@@ -69,3 +69,5 @@ EOF
 
 ansible-playbook -i hosts 2-provisionar-k8s-master-auto-shell.yml -u ubuntu --private-key /var/lib/jenkins/.ssh/id_rsa
 
+echo "aguardando provisionamento do weavenet e comunicacao do cluster"
+sleep 30
