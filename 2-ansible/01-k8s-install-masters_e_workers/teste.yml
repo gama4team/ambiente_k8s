@@ -5,5 +5,6 @@
     - name: "valida kubernetes"
       shell: kubectl get nodes -o wide
       become: yes
+      register: ps
     - debug:
         msg: " '{{ps.stdout_lines }}' "
