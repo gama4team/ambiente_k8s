@@ -1,10 +1,9 @@
 - hosts:
   - ec2-k8s-m1
-  - ec2-k8s-m2
-  - ec2-k8s-m3
 
   tasks:
     - name: "valida kubernetes"
-      shell: kubectl get nodes
+      shell: kubectl get nodes -o wide
       become: yes
-
+    - debug:
+        msg: " '{{ps.stdout_lines }}' "
